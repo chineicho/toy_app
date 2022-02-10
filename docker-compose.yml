@@ -1,0 +1,20 @@
+version: '3'
+services:
+  db:
+    platform: linux/x86_64
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: root
+    ports:
+      - '3307:3307'
+
+  web:
+    build: .
+    command: rails s -p 8000 -b '0.0.0.0'
+    volumes:
+      - .:/toy_app
+    ports:
+      - '8000:8000'
+    links:
+      - db

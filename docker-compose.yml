@@ -14,7 +14,10 @@ services:
     command: rails s -p 8000 -b '0.0.0.0'
     volumes:
       - .:/toy_app
+      - gem_data:/usr/local/bundle
     ports:
       - '8000:8000'
     links:
       - db
+volumes:
+  gem_data:
